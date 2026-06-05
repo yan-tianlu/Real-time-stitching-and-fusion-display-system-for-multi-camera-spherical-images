@@ -10,7 +10,7 @@
 
 ## 功能特点
 
-- 支持 3 路摄像头模式：`/dev/video0`、`/dev/video2`、`/dev/video4`
+- 支持 3 路摄像头模式：`/dev/video0`、`/dev/video2`、`/dev/video4`（主要做四路，三路可能不完善，三路只用来测试）
 - 支持 4 路摄像头模式：`/dev/video0`、`/dev/video2`、`/dev/video4`、`/dev/video6`
 - 基于 OpenCV 完成图像读取、特征匹配、矩阵计算与画面拼接
 - 使用独立线程分别处理采集、拼接和 Web 推流，降低阻塞
