@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RK3588 多摄像头拼接系统</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --line: #d9e1ec;
+      --text: #1e293b;
+      --sub: #475569;
+      --brand: #0077b6;
+      --brand-2: #00a8e8;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #edf4ff 0%, #f8fbff 45%, #eef8ff 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 24px;
+      color: #0f172a;
+    }
+
+    .desc {
+      margin: 0 0 14px;
+      color: var(--sub);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+    }
+
+    .title {
+      padding: 10px 12px;
+      font-weight: 700;
+      font-size: 14px;
+      border-bottom: 1px solid var(--line);
+      color: #0b3f6e;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      background: #e2e8f0;
+    }
+
+    .stitch {
+      margin-top: 14px;
+    }
+
+    .stitch .title {
+      font-size: 16px;
+      color: #003049;
+      background: linear-gradient(90deg, #e8f8ff, #f4fbff);
+    }
+
+    footer {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>RK3588 三路/四路摄像头实时拼接</h1>
+    <p class="desc">数据流：capture -> 内存缓存 -> stitch -> output/frame.jpg -> web</p>
+
+    <div class="grid">
+      {% for cam_id in cam_ids %}
+      <div class="card">
+        <div class="title">原始画面 cam{{ cam_id }}</div>
+        <img src="/video/cam/{{ cam_id }}" alt="cam{{ cam_id }}" />
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="card stitch">
+      <div class="title">拼接结果（output/frame.jpg）</div>
+      <img src="/video/stitch" alt="stitch" />
+    </div>
+
+    <footer>建议使用 Chrome/Edge 访问，局域网地址形如 http://设备IP:5000</footer>
+  </div>
+</body>
+</html>
